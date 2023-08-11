@@ -12,6 +12,7 @@
 		0A675B042A865ACD00CFB5EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A675B032A865ACD00CFB5EC /* Assets.xcassets */; };
 		0A675B082A865ACD00CFB5EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A675B072A865ACD00CFB5EC /* Preview Assets.xcassets */; };
 		0A675B152A865B2100CFB5EC /* ReliableAsyncTestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A675B142A865B2100CFB5EC /* ReliableAsyncTestsTests.swift */; };
+		0A675B1D2A865ECE00CFB5EC /* LockIsolated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A675B1C2A865ECE00CFB5EC /* LockIsolated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,7 @@
 		0A675B122A865B2100CFB5EC /* ReliableAsyncTestsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReliableAsyncTestsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A675B142A865B2100CFB5EC /* ReliableAsyncTestsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReliableAsyncTestsTests.swift; sourceTree = "<group>"; };
 		0A675B1B2A865BDE00CFB5EC /* ReliableAsyncTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReliableAsyncTests.xctestplan; sourceTree = "<group>"; };
+		0A675B1C2A865ECE00CFB5EC /* LockIsolated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockIsolated.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				0A675B1B2A865BDE00CFB5EC /* ReliableAsyncTests.xctestplan */,
 				0A675B142A865B2100CFB5EC /* ReliableAsyncTestsTests.swift */,
+				0A675B1C2A865ECE00CFB5EC /* LockIsolated.swift */,
 			);
 			path = ReliableAsyncTestsTests;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A675B152A865B2100CFB5EC /* ReliableAsyncTestsTests.swift in Sources */,
+				0A675B1D2A865ECE00CFB5EC /* LockIsolated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

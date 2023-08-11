@@ -16,11 +16,17 @@ final class ReliableAsyncTestsTests: XCTestCase {
 		XCTAssertEqual(end.timeIntervalSince(start), 1, accuracy: 0.1)
 	}
 	
+	@MainActor
 	func testTaskStart() async {
+		// values: [Int] = []
+		let values = LockIsolated([Int]())
 		let task = Task {
-			print(#line, { Thread.current }())
+			// values.append(1)
+			values.withValue { $0.append(1) }
 		}
-		print(#line, { Thread.current }())
+		// values.append(2)
+		values.withValue { $0.append(2) }
 		await task.value
+		XCTAssertEqual(values.value, [2, 1])
 	}
 }
