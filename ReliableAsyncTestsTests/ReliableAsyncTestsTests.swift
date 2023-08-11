@@ -29,4 +29,13 @@ final class ReliableAsyncTestsTests: XCTestCase {
 		await task.value
 		XCTAssertEqual(values.value, [2, 1])
 	}
+	
+	@MainActor
+	func testTaskStartOrder() async {
+		let values = LockIsolated<[Int]>([])
+		let task1 = Task { values.withValue { $0.append(1) } }
+		let task2 = Task { values.withValue { $0.append(2) } }
+		_ = await (task1.value, task2.value)
+		XCTAssertEqual(values.value, [1, 2 ])
+	}
 }
