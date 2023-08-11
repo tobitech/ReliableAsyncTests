@@ -1,26 +1,40 @@
-//
-//  ContentView.swift
-//  ReliableAsyncTests
-//
-//  Created by Oluwatobi Omotayo on 11/08/2023.
-//
-
 import SwiftUI
 
+@MainActor
+class NumberFactModel: ObservableObject {
+	@Published var count = 0
+	
+	func incrementButtonTapped() {
+		self.count += 1
+	}
+	func decrementButtonTapped() {
+		self.count -= 1
+	}
+}
+
 struct ContentView: View {
-	var body: some View {
-		VStack {
-			Image(systemName: "globe")
-				.imageScale(.large)
-				.foregroundColor(.accentColor)
-			Text("Hello, world!")
+	@ObservedObject var model: NumberFactModel
+	
+	var body:some View {
+		Form {
+			Section {
+				HStack {
+					Button("-") {
+						self.model.decrementButtonTapped()
+					}
+					Text( "\(self.model.count)")
+					Button("+") {
+						self.model.incrementButtonTapped()
+					}
+				}
+			}
+			.buttonStyle(.plain)
 		}
-		.padding()
 	}
 }
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		ContentView()
+		ContentView(model: NumberFactModel())
 	}
 }
