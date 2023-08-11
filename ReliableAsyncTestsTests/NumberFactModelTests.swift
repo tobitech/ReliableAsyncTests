@@ -78,4 +78,89 @@ final class NumberFactModelTests: XCTestCase {
 		await task.value
 		XCTAssertEqual(model.isLoading, false)
 	}
+	
+	func testBackToBackGetFact()async throws {
+		let fact0 = AsyncStream.makeStream(of: String.self)
+		let fact1 = AsyncStream.makeStream(of: String.self)
+		let callCount = LockIsolated(0)
+		
+		let model = withDependencies {
+			$0.numberFact.fact = { number in
+				callCount.withValue { $0 += 1 }
+				if callCount.value == 1 {
+					return await fact0.stream
+					.first(where: { _ in true }) ?? ""} else if callCount.value == 2 {
+						return await fact1.stream
+						.first(where: { _ in true }) ?? ""} else {
+							fatalError()
+						}
+			}
+		} operation: {
+			NumberFactModel()
+		}
+		
+		let task0 = Task { await model.getFactButtonTapped() }
+		let task1 = Task { await model.getFactButtonTapped() }
+		await Task.yield()
+		await Task.yield()
+		await Task.yield()
+		await Task.yield()
+		await Task.yield()
+		await Task.yield()
+		fact1.continuation.yield("0 is a great number.")
+		try await Task.sleep(for: .milliseconds(100))
+		fact0.continuation.yield("0 is a better number.")
+		await task0.value
+		await task1.value
+		XCTAssertEqual(model.fact, "0 is a great number.")
+	}
+	
+	func testCancel() async {
+		// if we ever try to await this factStream it would suspend forever.
+		// let factStream = AsyncStream<Never> { _ in }
+		
+		// this pattern of suspending tasks forever is very useful in unit testing:
+//		let model = withDependencies {
+//			$0.numberFact.fact = { number in
+//				for await _ in factStream { }
+//				throw CancellationError()
+//			}
+//		} operation: {
+//			NumberFactModel()
+//		}
+		
+		let model = withDependencies {
+			// we can rewrite all of the above (i.e. suspending a task forever)
+			// using a helper from Dependencies package.
+			$0.numberFact.fact = { _ in try await Task.never() }
+		} operation: {
+			NumberFactModel()
+		}
+		
+		let task = Task { await model.getFactButtonTapped() }
+		// await Task.yield() // seem we might need many yields
+		// let's move this into an extension
+//		for _ in 1...20 {
+//			await Task.detached(priority: .background) {
+//				await Task.yield()
+//			}
+//			.value
+//		}
+		await Task.megaYield()
+		model.cancelButtonTapped()
+		await task.value // allow the task to finish.
+		XCTAssertEqual(model.fact, nil)
+	}
+}
+
+extension Task where Success == Never, Failure == Never {
+	static func megaYield() async {
+		for _ in 1...20 {
+			await Task<Void, Never>
+				.detached(priority: .background) {
+					await Task.yield()
+				}
+				.value
+		}
+	}
 }
