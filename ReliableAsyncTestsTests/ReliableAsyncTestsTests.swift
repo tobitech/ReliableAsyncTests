@@ -38,4 +38,13 @@ final class ReliableAsyncTestsTests: XCTestCase {
 		_ = await (task1.value, task2.value)
 		XCTAssertEqual(values.value, [1, 2 ])
 	}
+	
+	func testTaskGroupStartOrder() async {
+		let values = await withTaskGroup(of: [Int].self) { group in
+			group.addTask { [1] }
+			group.addTask { [2] }
+			return await group.reduce(into: [], +=)
+		}
+		XCTAssertEqual(values, [1, 2])
+	}
 }
