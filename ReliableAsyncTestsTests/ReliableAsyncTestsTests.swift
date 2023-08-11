@@ -9,8 +9,11 @@ import XCTest
 
 final class ReliableAsyncTestsTests: XCTestCase {
 	
-	func testBasics() async {
-		
+	func testBasics() async throws {
+		let start = Date()
+		try await Task.sleep(for: .seconds(1))
+		let end = Date()
+		XCTAssertEqual(end.timeIntervalSince(start), 1, accuracy: 0.1)
 	}
 	
 }
