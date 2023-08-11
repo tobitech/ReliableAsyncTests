@@ -28,4 +28,20 @@ final class NumberFactModelTests: XCTestCase {
 		await model.getFactButtonTapped()
 		XCTAssertEqual(model.fact, "1 is a good number")
 	}
+	
+	func testFactClearsOut() async {
+		let model = withDependencies {
+			$0.numberFact.fact = { "\($0) is a good number." }
+		} operation: {
+			NumberFactModel()
+		}
+		
+		model.fact = "An old fact about 0"
+
+		let task = Task { await model.getFactButtonTapped() }
+		await Task.yield()
+		XCTAssertEqual(model.fact, nil)
+		await task.value
+		XCTAssertEqual(model.fact, "0 is a good number.")
+	}
 }
