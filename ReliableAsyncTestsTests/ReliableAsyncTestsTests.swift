@@ -1,0 +1,16 @@
+//
+//  ReliableAsyncTestsTests.swift
+//  ReliableAsyncTestsTests
+//
+//  Created by Oluwatobi Omotayo on 11/08/2023.
+//
+
+import XCTest
+
+final class ReliableAsyncTestsTests: XCTestCase {
+	
+	func testBasics() async {
+		
+	}
+	
+}
