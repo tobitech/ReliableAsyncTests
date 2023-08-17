@@ -162,11 +162,20 @@ final class NumberFactModelTests: XCTestCase {
 		await Task.megaYield()
 		
 		NotificationCenter.default.post(name: UIApplication.userDidTakeScreenshotNotification, object: nil)
-		await Task.megaYield()
+		// await Task.megaYield()
+		// to beef this up we would actually test for passage of time and say after we wait for 2 seconds and it doesn't pass we just break out the test.
+		// using a condition like this can be problematic especially if there is a bug in our model that prevents the count from incrementing.
+		// this implementation is a poor man's version
+		while model.count != 1 {
+			await Task.yield()
+		}
 		XCTAssertEqual(model.count, 1)
 		
 		NotificationCenter.default.post(name: UIApplication.userDidTakeScreenshotNotification, object: nil)
-		await Task.megaYield()
+		// await Task.megaYield()
+		while model.count != 2 {
+			await Task.yield()
+		}
 		XCTAssertEqual(model.count, 2)
 	}
 }
