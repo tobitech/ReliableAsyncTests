@@ -4,7 +4,7 @@ import Clocks
 import SwiftUI
 
 struct CountdownDemo: View {
-	@State var countdown = 1000
+	@State var countdown = 10
 	@State var isConfettiVisible = false
 	let clock: any Clock<Duration>
 	

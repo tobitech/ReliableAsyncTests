@@ -16,6 +16,7 @@
 		0A675B152A865B2100CFB5EC /* ReliableAsyncTestsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A675B142A865B2100CFB5EC /* ReliableAsyncTestsTests.swift */; };
 		0A675B1D2A865ECE00CFB5EC /* LockIsolated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A675B1C2A865ECE00CFB5EC /* LockIsolated.swift */; };
 		0AA054462A8E7F4900192603 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA054452A8E7F4900192603 /* Countdown.swift */; };
+		0AA054482A8E865900192603 /* ConcurrencyExtras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA054472A8E865900192603 /* ConcurrencyExtras.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		0A675B1B2A865BDE00CFB5EC /* ReliableAsyncTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReliableAsyncTests.xctestplan; sourceTree = "<group>"; };
 		0A675B1C2A865ECE00CFB5EC /* LockIsolated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockIsolated.swift; sourceTree = "<group>"; };
 		0AA054452A8E7F4900192603 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
+		0AA054472A8E865900192603 /* ConcurrencyExtras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcurrencyExtras.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,13 +86,14 @@
 		0A675AFE2A865ACD00CFB5EC /* ReliableAsyncTests */ = {
 			isa = PBXGroup;
 			children = (
-				0A5A96FF2A86838200F17C8B /* Info.plist */,
-				0A675AFF2A865ACD00CFB5EC /* ReliableAsyncTestsApp.swift */,
-				0A675B012A865ACD00CFB5EC /* ContentView.swift */,
-				0A675B032A865ACD00CFB5EC /* Assets.xcassets */,
 				0A675B052A865ACD00CFB5EC /* ReliableAsyncTests.entitlements */,
-				0A675B062A865ACD00CFB5EC /* Preview Content */,
+				0A5A96FF2A86838200F17C8B /* Info.plist */,
+				0AA054472A8E865900192603 /* ConcurrencyExtras.swift */,
+				0A675B012A865ACD00CFB5EC /* ContentView.swift */,
 				0AA054452A8E7F4900192603 /* Countdown.swift */,
+				0A675AFF2A865ACD00CFB5EC /* ReliableAsyncTestsApp.swift */,
+				0A675B032A865ACD00CFB5EC /* Assets.xcassets */,
+				0A675B062A865ACD00CFB5EC /* Preview Content */,
 			);
 			path = ReliableAsyncTests;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AA054482A8E865900192603 /* ConcurrencyExtras.swift in Sources */,
 				0A675B022A865ACD00CFB5EC /* ContentView.swift in Sources */,
 				0A675B002A865ACD00CFB5EC /* ReliableAsyncTestsApp.swift in Sources */,
 				0AA054462A8E7F4900192603 /* Countdown.swift in Sources */,
